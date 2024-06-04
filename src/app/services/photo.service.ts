@@ -7,6 +7,8 @@ export interface UserPhoto {
   filepath: string;
   webviewPath?: string;
 }
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +17,8 @@ export class PhotoService {
 
   constructor() { }
 
+  public photos: UserPhoto[] = [];
+
   public async addNewToGallery() {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
@@ -22,5 +26,11 @@ export class PhotoService {
       source: CameraSource.Camera,
       quality: 100
     });
+
+    this.photos.unshift({
+      filepath: "soon...",
+      webviewPath: capturedPhoto.webPath!
+    });
+
   }
 }
